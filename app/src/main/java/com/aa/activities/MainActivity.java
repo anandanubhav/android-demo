@@ -9,36 +9,35 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity{
 
     private static final String TAG = MainActivity.class.getSimpleName();
-    private RelativeLayout relativeLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        relativeLayout = findViewById(R.id.relativeLayout);
+        final RelativeLayout relativeLayout = findViewById(R.id.relativeLayout);
 
         Button button1 = findViewById(R.id.button1);
         Button button2 = findViewById(R.id.button2);
 
-        button1.setOnClickListener(MainActivity.this);
-        button2.setOnClickListener(MainActivity.this);
-    }
-
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.button1:
-                Log.i(TAG,"Color changed to GREEN");
+        assert button1 != null;
+        button1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 relativeLayout.setBackgroundColor(Color.GREEN);
-                break;
-            case R.id.button2:
-                Log.i(TAG,"Color changed to BLUE");
+            }
+        });
+
+        assert button2 != null;
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 relativeLayout.setBackgroundColor(Color.BLUE);
-                break;
-        }
+            }
+        });
+
     }
 }
